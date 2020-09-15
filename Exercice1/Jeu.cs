@@ -34,8 +34,8 @@ namespace Exercice1
 
         public Game(int nbDice, FacesEnum faceType)
         {
-            MyDiceNumber = nbDice;
-            MyFaceType = faceType;
+            this.MyDiceNumber = nbDice;
+            this.MyFaceType = faceType;
             diceTrack = new Dictionary<Dice, int>();
 
             for (int i = 0; i < MyDiceNumber; i++)
