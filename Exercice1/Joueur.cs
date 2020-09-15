@@ -8,7 +8,7 @@ namespace Exercice1
 {
     class Joueur
     {
-        public Jeu MyGame { get; private set; }
+        public Game MyGame { get; private set; }
 
         public string FullName { get 
             {
