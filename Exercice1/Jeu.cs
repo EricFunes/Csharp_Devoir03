@@ -27,7 +27,6 @@ namespace Exercice1
                     myDiceNumber = null;
                     Console.WriteLine($"Le nombre de dé doit être compris entre 1 et 5.");
                 }
-
             }
         }
 
@@ -72,13 +71,20 @@ namespace Exercice1
             return false;
         }
         
-        //FIXME: After first iteration, error occurs because list is modified.
+        //NOTE: Why foreach creates an error?
         public bool ThrowAllDice()
         {
             if (this.Count != 0)
             {
-                foreach (Dice d in this)
+                //foreach (Dice d in this)
+                //{
+                //    this.Remove(d);
+                //    var result = r.Next(1, (int)d.MyFaceNb);
+                //    this.diceTrack.Add(d, result);
+                //}
+                for (int i = 0; i < this.Count; i++)
                 {
+                    Dice d = this[i];
                     this.Remove(d);
                     var result = r.Next(1, (int)d.MyFaceNb);
                     this.diceTrack.Add(d, result);
