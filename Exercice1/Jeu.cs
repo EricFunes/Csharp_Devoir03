@@ -46,6 +46,7 @@ namespace Exercice1
 
         public bool UpdateDiceColor(ColorEnum previousColor, ColorEnum newColor)
         {
+
             throw new NotImplementedException();
         }
 
@@ -76,10 +77,18 @@ namespace Exercice1
 
             throw new NotImplementedException();
         }
-        private Dice getGameDiceByColor(ColorEnum color)
+        private Dice? getGameDiceByColor(ColorEnum color)
         {
+            Dice? diceFound = null;
 
-            throw new NotImplementedException();
+            foreach (Dice d in this)
+            {
+                if (d.MyColor == color)
+                {
+                    diceFound = d;
+                }
+            }
+            return diceFound;
         }
         public bool ThrowOneTrackDice(ColorEnum color)
         {
