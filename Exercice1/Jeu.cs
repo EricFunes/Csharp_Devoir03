@@ -46,8 +46,15 @@ namespace Exercice1
 
         public bool UpdateDiceColor(ColorEnum previousColor, ColorEnum newColor)
         {
-
-            throw new NotImplementedException();
+            Dice? previousDice = getGameDiceByColor(previousColor);
+            if (previousDice == null)
+            {
+                Console.WriteLine($"Aucun dé de couleur {previousColor} existe dans le jeu.");
+                return false;
+            }
+            this.Remove((Dice)previousDice);
+            this.Add(new Dice(MyFaceType, newColor));
+            return true;
         }
 
         public bool ThrowOneDice()
