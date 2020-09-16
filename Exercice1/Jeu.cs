@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using static Exercice1.Dice;
 
 namespace Exercice1
@@ -70,6 +71,8 @@ namespace Exercice1
             }
             return false;
         }
+        
+        //FIXME: After first iteration, error occurs because list is modified.
         public bool ThrowAllDice()
         {
             if (this.Count != 0)
@@ -80,16 +83,9 @@ namespace Exercice1
                     var result = r.Next(1, (int)d.MyFaceNb);
                     this.diceTrack.Add(d, result);
                 }
-                
                 return true;
             }
             return false;
-        }
-
-        public void MyMethod()
-        {
-
-            throw new NotImplementedException();
         }
         public string GetDiceTrackResult()
         {
