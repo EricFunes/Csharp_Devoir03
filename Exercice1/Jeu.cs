@@ -4,7 +4,7 @@ using static Exercice1.Dice;
 
 namespace Exercice1
 {
-    class Game
+    class Game: List<Dice>
     {
         private Random r = new Random();
         private Dictionary<Dice, int> diceTrack;
@@ -17,13 +17,13 @@ namespace Exercice1
             get { return myDiceNumber; }
             set
             {
-                if (MyDiceNumber <= maxDiceNumber && MyDiceNumber >= minDiceNumber)
+                if (value <= maxDiceNumber && value >= minDiceNumber)
                 {
                     myDiceNumber = value;
                 }
                 else
                 {
-                    MyDiceNumber = null;
+                    myDiceNumber = null;
                     Console.WriteLine($"Le nombre de dé doit être compris entre 1 et 5.");
                 }
 
@@ -40,7 +40,7 @@ namespace Exercice1
 
             for (int i = 0; i < MyDiceNumber; i++)
             {
-                new Dice(faceType, new Dice.ColorEnum());
+                this.Add(new Dice(faceType, new Dice.ColorEnum()));
             }
         }
 

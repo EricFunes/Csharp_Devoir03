@@ -10,7 +10,8 @@ namespace Exercice1
     {
         static void Main(string[] args)
         {
-
+            Player player = new Player("Eric", "Funes", 3, Dice.FacesEnum.quatres);
+            Console.WriteLine(player);
         }
     }
 }
