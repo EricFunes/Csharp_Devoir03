@@ -40,7 +40,8 @@ namespace Exercice1
 
             for (int i = 0; i < MyDiceNumber; i++)
             {
-                this.Add(new Dice(faceType, new Dice.ColorEnum()));
+                Dice.ColorEnum color = (Dice.ColorEnum) i;
+                this.Add(new Dice(faceType, color));
             }
         }
 
@@ -59,13 +60,30 @@ namespace Exercice1
 
         public bool ThrowOneDice()
         {
-
-            throw new NotImplementedException();
+            if (this.Count != 0)
+            {
+                Dice d = this[0];
+                this.Remove(d);
+                var result = r.Next(1, (int) d.MyFaceNb);
+                this.diceTrack.Add(d, result);
+                return true;
+            }
+            return false;
         }
         public bool ThrowAllDice()
         {
-
-            throw new NotImplementedException();
+            if (this.Count != 0)
+            {
+                foreach (Dice d in this)
+                {
+                    this.Remove(d);
+                    var result = r.Next(1, (int)d.MyFaceNb);
+                    this.diceTrack.Add(d, result);
+                }
+                
+                return true;
+            }
+            return false;
         }
 
         public void MyMethod()
@@ -75,8 +93,18 @@ namespace Exercice1
         }
         public string GetDiceTrackResult()
         {
+            string result = "";
 
-            throw new NotImplementedException();
+            //foreach (KeyValuePair<Dice, int> dice in diceTrack)
+            //{
+            //    result += $"Dé {dice.Value} ";
+            //}
+
+            foreach (Dice d in this)
+            {
+                result += $"Dé {d.MyColor} {d.MyFaceNb} ";
+            }
+            return result;
         }
 
         private Dice getTrackDiceByColor(ColorEnum color)
