@@ -28,6 +28,8 @@ namespace Exercice1
 
             player.MyGame.SwapDice(Dice.ColorEnum.BLANC, Dice.ColorEnum.VERT);
             Console.WriteLine($"Les résultats des dés BLANC et VERT sont échangés! TrackResult: {player.MyGame.GetDiceTrackResult()}");
+
+            Console.WriteLine($"Les résultats triés sont: {player.MyGame.GetSortedDiceTrackResult()}");
         }
     }
 }

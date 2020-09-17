@@ -139,8 +139,17 @@ namespace Exercice1
         }
         public string GetSortedDiceTrackResult()
         {
+            string result = "";
+            List<KeyValuePair<Dice, int>> list = diceTrack.ToList();
 
-            throw new NotImplementedException();
+            list.Sort((firstDice, secondDice) => firstDice.Value.CompareTo(secondDice.Value));
+
+            foreach (KeyValuePair<Dice, int> dice in list)
+            {
+                result += $"Dé {dice.Key.MyColor} {dice.Value} ";
+            }
+
+            return result;
         }
         public bool SwapDice(ColorEnum previousColor, ColorEnum newColor)
         {
