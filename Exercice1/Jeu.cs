@@ -76,22 +76,21 @@ namespace Exercice1
         {
             if (this.Count != 0)
             {
-                //foreach (Dice d in this)
-                //{
-                //    this.Remove(d);
-                //    var result = r.Next(1, (int)d.MyFaceNb);
-                //    this.diceTrack.Add(d, result);
-                //}
-                for (int i = 0; i < this.Count; i++)
+                foreach (Dice d in this)
                 {
-                    Dice d = this[i];
                     this.Remove(d);
                     var result = r.Next(1, (int)d.MyFaceNb);
                     this.diceTrack.Add(d, result);
                 }
-                return true;
+                //for (int i = 0; i <= this.Count; i++)
+                //{
+                //    Dice d = this[0];
+                //    this.Remove(d);
+                //    var result = r.Next(1, (int)d.MyFaceNb);
+                //    this.diceTrack.Add(d, result);
+                //}
             }
-            return false;
+            return true;
         }
         public string GetDiceTrackResult()
         {
@@ -102,17 +101,32 @@ namespace Exercice1
             //    result += $"Dé {dice.Value} ";
             //}
 
-            foreach (Dice d in this)
+            foreach (KeyValuePair<Dice, int> dice in this.diceTrack)
             {
-                result += $"Dé {d.MyColor} {d.MyFaceNb} ";
+                result += $"Dé {dice.Key.MyColor} {dice.Key.MyFaceNb} ";
             }
             return result;
         }
 
-        private Dice getTrackDiceByColor(ColorEnum color)
+        private Dice? getTrackDiceByColor(ColorEnum color)
         {
+            Dice? diceFound = null;
 
-            throw new NotImplementedException();
+            //foreach (Dice d in this.diceTrack)
+            //{
+            //    if (d.MyColor == color)
+            //    {
+            //        diceFound = d;
+            //    }
+            //}
+            foreach (KeyValuePair<Dice, int> dice in this.diceTrack)
+            {
+                if (dice.Key.MyColor == color)
+                {
+                    diceFound = dice.Key;
+                }
+            }
+            return diceFound;
         }
         private Dice? getGameDiceByColor(ColorEnum color)
         {
@@ -129,8 +143,15 @@ namespace Exercice1
         }
         public bool ThrowOneTrackDice(ColorEnum color)
         {
-
-            throw new NotImplementedException();
+            if (this.diceTrack.Count != 0)
+            {
+                Dice d = this[0];
+                this.Remove(d);
+                var result = r.Next(1, (int)d.MyFaceNb);
+                this.diceTrack.Add(d, result);
+                return true;
+            }
+            return false;
         }
         public string GetSortedDiceTrackResult()
         {
