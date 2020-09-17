@@ -80,13 +80,6 @@ namespace Exercice1
                     var result = r.Next(1, (int)d.MyFaceNb);
                     this.diceTrack.Add(d, result);
                 }
-                //for (int i = 0; i <= this.Count; i++)
-                //{
-                //    Dice d = this[0];
-                //    this.Remove(d);
-                //    var result = r.Next(1, (int)d.MyFaceNb);
-                //    this.diceTrack.Add(d, result);
-                //}
             }
             return true;
         }
