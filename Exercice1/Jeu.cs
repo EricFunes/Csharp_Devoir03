@@ -94,14 +94,9 @@ namespace Exercice1
         {
             string result = "";
 
-            //foreach (KeyValuePair<Dice, int> dice in diceTrack)
-            //{
-            //    result += $"Dé {dice.Value} ";
-            //}
-
             foreach (KeyValuePair<Dice, int> dice in this.diceTrack)
             {
-                result += $"Dé {dice.Key.MyColor} {dice.Key.MyFaceNb} ";
+                result += $"Dé {dice.Key.MyColor} {dice.Value} ";
             }
             return result;
         }
@@ -110,13 +105,6 @@ namespace Exercice1
         {
             Dice? diceFound = null;
 
-            //foreach (Dice d in this.diceTrack)
-            //{
-            //    if (d.MyColor == color)
-            //    {
-            //        diceFound = d;
-            //    }
-            //}
             foreach (KeyValuePair<Dice, int> dice in this.diceTrack)
             {
                 if (dice.Key.MyColor == color)
@@ -163,17 +151,36 @@ namespace Exercice1
         }
         public bool SwapDice(ColorEnum previousColor, ColorEnum newColor)
         {
-            Dice? previousDice = getTrackDiceByColor(previousColor);
-            Dice? newDice = getTrackDiceByColor(newColor);
-            
-            Dice? tmpDice = previousDice;
+            Dice? firstDice = getTrackDiceByColor(previousColor);
+            Dice? secondDice = getTrackDiceByColor(newColor);
+            int firstDiceValue = 0;
+            int secondDiceValue = 0;
 
-            this.diceTrack.Remove(previousDice.Value);
+            if (firstDice != null && secondDice != null)
+            {
+                foreach (KeyValuePair<Dice, int> dice in this.diceTrack)
+                {
+                    if (dice.Key.Equals((Dice)firstDice))
+                    {
+                        firstDiceValue = dice.Value;
+                    }
+                    else if (dice.Key.Equals((Dice)secondDice))
+                    {
+                        secondDiceValue = dice.Value;
+                    }
+                }
+                this.diceTrack.Remove((Dice)firstDice);
+                this.diceTrack.Remove((Dice)secondDice);
 
-            previousDice = newDice;
-            newDice = tmpDice;
+                this.diceTrack.Add((Dice)firstDice, secondDiceValue);
+                this.diceTrack.Add((Dice)secondDice, firstDiceValue);
 
-            return true;
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }
