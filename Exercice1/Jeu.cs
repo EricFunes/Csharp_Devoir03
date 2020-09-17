@@ -70,13 +70,11 @@ namespace Exercice1
             }
             return false;
         }
-        
-        //NOTE: Why foreach creates an error?
         public bool ThrowAllDice()
         {
             if (this.Count != 0)
             {
-                foreach (Dice d in this)
+                foreach (Dice d in this.ToList())
                 {
                     this.Remove(d);
                     var result = r.Next(1, (int)d.MyFaceNb);
