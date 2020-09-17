@@ -23,8 +23,11 @@ namespace Exercice1
             player.MyGame.ThrowAllDice();
             Console.WriteLine($"Tous les dés sont lancés! TrackResult: {player.MyGame.GetDiceTrackResult()}");
 
-            //player.MyGame.ThrowOneTrackDice(Dice.ColorEnum.VERT);
-            //Console.WriteLine($"Le dé vert est relancé, TrackResult: {player.MyGame.GetDiceTrackResult()}");
+            player.MyGame.ThrowOneTrackDice(Dice.ColorEnum.VERT);
+            Console.WriteLine($"Le dé vert est relancé, TrackResult: {player.MyGame.GetDiceTrackResult()}");
+
+            player.MyGame.SwapDice(Dice.ColorEnum.BLANC, Dice.ColorEnum.VERT);
+            Console.WriteLine($"Les résultats des dés BLANC et VERT sont échangés! TrackResult: {player.MyGame.GetDiceTrackResult()}");
         }
     }
 }

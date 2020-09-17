@@ -143,11 +143,16 @@ namespace Exercice1
         {
             if (this.diceTrack.Count != 0)
             {
-                Dice d = this[0];
-                this.Remove(d);
-                var result = r.Next(1, (int)d.MyFaceNb);
-                this.diceTrack.Add(d, result);
-                return true;
+                foreach (KeyValuePair<Dice, int> dice in this.diceTrack)
+                {
+                    if (dice.Key.MyColor == color)
+                    {
+                        this.diceTrack.Remove(dice.Key);
+                        var result = r.Next(1, (int)dice.Key.MyFaceNb);
+                        this.diceTrack.Add(dice.Key, result);
+                        return true;
+                    }
+                }
             }
             return false;
         }
@@ -158,8 +163,17 @@ namespace Exercice1
         }
         public bool SwapDice(ColorEnum previousColor, ColorEnum newColor)
         {
+            Dice? previousDice = getTrackDiceByColor(previousColor);
+            Dice? newDice = getTrackDiceByColor(newColor);
+            
+            Dice? tmpDice = previousDice;
 
-            throw new NotImplementedException();
+            this.diceTrack.Remove(previousDice.Value);
+
+            previousDice = newDice;
+            newDice = tmpDice;
+
+            return true;
         }
     }
 }
